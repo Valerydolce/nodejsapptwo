@@ -14,7 +14,7 @@ pipeline {
         stage('Unit Test') {
             steps {
                 sh 'npm test'
-                sh 'npm install'  # Install NodeJS dependencies 
+                sh 'npm install'
             }
         }
     }
