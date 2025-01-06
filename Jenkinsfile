@@ -1,11 +1,11 @@
 pipeline {
+    agent any
 
     stages {
-        stage('GitHub'){
+        stage('GitHub') {
             steps {
                 git branch: 'main', credentialsId: 'nodejsapptwo', url: 'https://github.com/Valerydolce/nodejsapptwo.git'
             }
         }
     }
-    
 }
