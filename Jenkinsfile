@@ -4,7 +4,7 @@ pipeline {
         nodejs 'NodeJS'
     }
 
-    enviornment {
+    environment {
         SONAR_SCANNER_HOME = tool 'SonarQubeScanner'  // this value is taken from Manage "Jenkins > tool"
         SONAR_PROJECT_KEY = 'nodejsapptwo'    // Project key was taken from SonarQube where we configured the project.
     }
