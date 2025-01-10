@@ -7,7 +7,7 @@ pipeline {
     environment {
         SONAR_SCANNER_HOME = tool 'SonarQubeScanner'  // this value is taken from Manage "Jenkins > tool"
         SONAR_PROJECT_KEY = 'nodejsapptwo'    // Project key was taken from SonarQube where we configured the project.
-        DOCKER_HUB_REPO = 'valerydolce/nodejsapptwo'
+        // DOCKER_HUB_REPO = 'valerydolce/nodejsapptwo'
     }
 
     stages {
@@ -44,7 +44,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {                    
-                    docker.build("${DOCKER_HUB_REPO}:latest")
+                    docker.build("${JOB_NAME_NOW}:latest")
                 }
             }
         }
