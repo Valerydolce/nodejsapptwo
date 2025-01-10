@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Trivy Scan') {
             steps {
                 sh 'trivy --severity HIGH,CRITICAL --no-progress --format table -o trivy-report.html image ${JOB_NAME_NOW}:latest'
             }
