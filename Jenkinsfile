@@ -53,30 +53,30 @@ pipeline {
             }
         }
 
-        // stage('Trivy Scan') {
-        //     steps {
-        //         sh 'trivy --severity HIGH,CRITICAL --no-progress --format table -o trivy-report.html image ${JOB_NAME_NOW}:latest'
-        //     }
-        // }
+        stage('Trivy Scan') {
+            steps {
+                sh 'trivy --severity HIGH,CRITICAL --no-progress --format table -o trivy-report.html image ${JOB_NAME_NOW}:latest'
+            }
+        }
 
-        // stage('Login to AWS ECR') {
-        //     steps {
-        //         //command was copied from AWS ECR object created (View push commands)
-        //         sh """
-        //         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 454292818931.dkr.ecr.us-east-1.amazonaws.com
-        //            """
-        //     }
-        // }
+        stage('Login to AWS ECR') {
+            steps {
+                //command was copied from AWS ECR object created (View push commands)
+                sh """
+                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 454292818931.dkr.ecr.us-east-1.amazonaws.com
+                   """
+            }
+        }
 
-        // stage('Push Image to ECR') {
-        //     steps {
-        //         script {
-        //             //Since we created the DOCKER build step with the "JOB_NAME_NOW", and that we have a new registry info,
-        //             //we need to replace it with the image information below, then create their variables in the envrionment section
-        //             docker.image("${ECR_REGISTRY/${ECR_REPO:IMAGE_TAG}}").push()
-        //         }
-        //     }
-        // }
+        stage('Push Image to ECR') {
+            steps {
+                script {
+                    //Since we created the DOCKER build step with the "JOB_NAME_NOW", and that we have a new registry info,
+                    //we need to replace it with the image information below, then create their variables in the envrionment section
+                    docker.image("${ECR_REGISTRY/${ECR_REPO:IMAGE_TAG}}").push()
+                }
+            }
+        }
     }
 }
 
