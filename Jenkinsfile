@@ -61,12 +61,23 @@ pipeline {
 
         stage('Login to AWS ECR') {
             steps {
-                //command was copied from AWS ECR object created (View push commands)
-                sh """
-                aws ecr get-login-password --region us-east-1 | docker login --username yval --password-stdin 454292818931.dkr.ecr.us-east-1.amazonaws.com
-                   """
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awscreds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    // some block
+                    sh """
+                    aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+                    """
+                }
             }
         }
+
+        // stage('Login to AWS ECR') {
+        //     steps {
+        //         //command was copied from AWS ECR object created (View push commands)
+        //         sh """
+        //         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+        //            """
+        //     }
+        // }
 
         stage('Push Image to ECR') {
             steps {
