@@ -9,7 +9,7 @@ pipeline {
         SONAR_PROJECT_KEY = 'nodejsapptwo'    // Project key was taken from SonarQube where we configured the project.
         // DOCKER_HUB_REPO = 'valerydolce/nodejsapptwo'
         //JOB_NAME_NOW = 'cicd-image01'
-        ECR_REGISTRY = '454292818931.dkr.ecr.us-east-1.amazonaws.com/nodejsapptwo'  //This is the ECR's URI
+        ECR_REGISTRY = '454292818931.dkr.ecr.us-east-1.amazonaws.com'
         ECR_REPO = 'nodejsapptwo' // Should be the repository name on AWS ECR
         IMAGE_TAG = 'latest'
     }
@@ -62,7 +62,7 @@ pipeline {
         stage('Login to AWS ECR') {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'awscreds', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    // some block
+                    //command was copied from AWS ECR object created (View push commands)
                     sh """
                     aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
                     """
