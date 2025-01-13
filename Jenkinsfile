@@ -63,7 +63,7 @@ pipeline {
             steps {
                 //command was copied from AWS ECR object created (View push commands)
                 sh """
-                aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 454292818931.dkr.ecr.us-east-1.amazonaws.com
+                aws ecr get-login-password --region us-east-1 | docker login --username yval --password-stdin 454292818931.dkr.ecr.us-east-1.amazonaws.com
                    """
             }
         }
