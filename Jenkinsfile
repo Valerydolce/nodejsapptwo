@@ -28,22 +28,22 @@ pipeline {
             }
         }
 
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         withCredentials([string(credentialsId: 'sonar-nodejsapptwo', variable: 'SONAR_TOKEN')]) {
-        //             withSonarQubeEnv('SonarQube') {
-        //                 // // some block
-        //                 sh """
-        //                 ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-        //                 -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-        //                 -Dsonar.sources=. \
-        //                 -Dsonar.host.url=http://192.168.56.6:9000 \
-        //                 -Dsonar.login=${SONAR_TOKEN}
-        //                 """
-        //             }
-        //         }
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                withCredentials([string(credentialsId: 'sonar-nodejsapptwo', variable: 'SONAR_TOKEN')]) {
+                    withSonarQubeEnv('SonarQube') {
+                        // // some block
+                        sh """
+                        ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://192.168.56.6:9000 \
+                        -Dsonar.login=${SONAR_TOKEN}
+                        """
+                    }
+                }
+            }
+        }
 
         // stage('Build Docker Image') {
         //     steps {
