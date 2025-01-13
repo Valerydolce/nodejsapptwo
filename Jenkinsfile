@@ -45,13 +45,13 @@ pipeline {
             }
         }
 
-        // stage('Build Docker Image') {
-        //     steps {
-        //         script {                    
-        //             docker.build("${ECR_REGISTRY/${ECR_REPO:IMAGE_TAG}}")
-        //         }
-        //     }
-        // }
+        stage('Build Docker Image') {
+            steps {
+                script {                    
+                    docker.build("${ECR_REGISTRY/${ECR_REPO:IMAGE_TAG}}")
+                }
+            }
+        }
 
         // stage('Trivy Scan') {
         //     steps {
