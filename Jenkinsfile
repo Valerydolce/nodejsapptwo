@@ -75,8 +75,8 @@ pipeline {
         //             //we need to replace it with the image information below, then create their variables in the envrionment section
         //             docker.image("${ECR_REGISTRY/${ECR_REPO:IMAGE_TAG}}").push()
         //         }
-            }
-        }
+        //     }
+        // }
     }
 }
 
