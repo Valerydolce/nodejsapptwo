@@ -70,15 +70,6 @@ pipeline {
             }
         }
 
-        // stage('Login to AWS ECR') {
-        //     steps {
-        //         //command was copied from AWS ECR object created (View push commands)
-        //         sh """
-        //         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ECR_REGISTRY}
-        //            """
-        //     }
-        // }
-
         stage('Push Image to ECR') {
             steps {
                 script {
