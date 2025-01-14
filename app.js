@@ -27,7 +27,7 @@ app.get('/hello', (req, res) => {
       </html>
     `);
   } else {
-    res.send('Hello, World! YVALCORP IT.\n');
+    res.send('Hello, World! YVALCORP IT...\n');
   }
 });
 
